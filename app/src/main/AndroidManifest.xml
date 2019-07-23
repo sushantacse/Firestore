@@ -11,8 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UpdateStudent"></activity>
-        <activity android:name=".StudentDetails" />
+        <activity android:name=".UpdateStudent"/>
+        <activity android:name=".StudentDetails" android:noHistory="true" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

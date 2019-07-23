@@ -50,7 +50,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.Holder> 
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setMessage("Please Select Your Operation");
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("DELETE STUDENT", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -75,7 +75,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.Holder> 
 
                     }
                 });
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("CLOSE OPTIONS", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
