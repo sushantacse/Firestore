@@ -2,7 +2,9 @@ package com.cbiu.firebasefirestore;
 
 import com.google.firebase.firestore.Exclude;
 
-public class Student {
+import java.io.Serializable;
+
+public class Student implements Serializable {
 
     @Exclude private String id;
     private String name;

@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="10dp"
-    tools:context=".MainActivity">
+    tools:context=".UpdateStudent">
 
     <EditText
         android:id="@+id/name"
@@ -23,19 +22,9 @@
 
 
     <Button
-        android:id="@+id/save"
+        android:id="@+id/update"
         android:layout_width="match_parent"
-        android:text="SAVE"
+        android:text="UPDATE"
         android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:text="VIEW"
-        android:onClick="gotoview"
-        android:layout_height="wrap_content" />
-
-
-
 
 </LinearLayout>

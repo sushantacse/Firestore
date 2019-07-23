@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,12 +29,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     private EditText name,phone;
-    private Button savebtn,viewbtn;
+    private Button savebtn;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private RecyclerView recyclerView;
-    private LinearLayoutManager linearLayoutManager;
-    private StudentAdapter studentAdapter;
-    private List<Student> studentList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,66 +40,11 @@ public class MainActivity extends AppCompatActivity {
         name = findViewById(R.id.name);
         phone = findViewById(R.id.phoneno);
         savebtn = findViewById(R.id.save);
-        viewbtn = findViewById(R.id.view);
-        recyclerView = findViewById(R.id.recyclerview);
-        recyclerView.setHasFixedSize(true);
-        studentList = new ArrayList<>();
-        linearLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        studentAdapter = new StudentAdapter(studentList,MainActivity.this);
-        recyclerView.setAdapter(studentAdapter);
         savebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 saveStudentData();
-            }
-        });
-
-        viewbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                studentList.clear();
-                viewStudentData();
-            }
-        });
-
-        recyclerView.setAdapter(studentAdapter);
-
-
-    }
-
-    private void viewStudentData() {
-
-        db.collection("student").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-
-                if (queryDocumentSnapshots.isEmpty())
-                {
-                    Toast.makeText(MainActivity.this, "No data Found", Toast.LENGTH_SHORT).show();
-                }
-
-                    List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
-                    for (DocumentSnapshot ds : list)
-                    {
-                        Student student = ds.toObject(Student.class);
-                        student.setId(ds.getId());
-                        studentList.add(student);
-
-                    }
-                    studentAdapter.notifyDataSetChanged();
-
-
-
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-
-                Toast.makeText(getApplicationContext(),"Failed "+e,Toast.LENGTH_SHORT).show();
-
             }
         });
 
@@ -129,5 +72,10 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
+    }
+
+    public void gotoview(View view) {
+
+        startActivity(new Intent(getApplicationContext(),StudentDetails.class));
     }
 }
